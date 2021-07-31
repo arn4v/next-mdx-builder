@@ -1,6 +1,6 @@
 {
   "name": "next-mdx-builder",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "license": "MIT",
   "author": "Arnav Gosain <arnav@arnavgosain.com>",
   "main": "index.js",
