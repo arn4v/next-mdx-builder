@@ -1,10 +1,8 @@
-import type { CoreProcessorOptions } from "xdm/lib/compile";
-
 export type Options = {
-  extensions: string[];
-  layoutExtensions: string[];
-  layoutsPath: string;
-  xdmOptions: CoreProcessorOptions;
+  mdxOptions?: {
+    remarkPlugins: unknown[];
+    rehypePlugins: unknown[];
+  };
 };
 
 declare module "next-mdx-fused" {

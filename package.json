@@ -9,6 +9,7 @@
     "fs-extra": "^10.0.0",
     "gray-matter": "^4.0.3",
     "loader-utils": "^2.0.0",
+    "next-mdx-remote": "^3.0.4",
     "xdm": "^1.12.1"
   },
   "peerDependencies": {

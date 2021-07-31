@@ -1,9 +1,9 @@
 const matter = require("gray-matter");
 const { getOptions } = require("loader-utils");
+const { serialize } = require("next-mdx-remote/serialize");
 
 module.exports = async function layoutLoader(source) {
   const callback = this.async();
-  const { resourcePath } = this;
   const options = getOptions(this);
 
   let data;
@@ -17,28 +17,39 @@ module.exports = async function layoutLoader(source) {
     callback(err);
   }
 
-  const html = String.raw;
+  const mdxSource = await serialize(content, {
+    mdxOptions: options.mdxOptions,
+  });
 
   if (typeof data.layout === "string") {
-    const jsx = `
-      import Layout from "${options.layoutsPath}/${data.layout}";
+    return callback(
+      null,
+      `
+      import { MDXRemote } from "next-mdx-remote";
+      import Layout from "${data.layout}";
       export const frontMatter = ${JSON.stringify(data)}
 
-      <Layout frontMatter={frontMatter}>${content}</Layout>
-    `;
-
-    callback(null, jsx);
-  } else {
-    const jsx = `
-      export const frontMatter = ${JSON.stringify(data)};
-      ${content}
-    `;
-
-    callback(null, jsx);
+      export default function Page() {
+        return (
+          <Layout frontMatter={frontMatter}>
+            <MDXRemote {...${JSON.stringify(mdxSource)}} />
+          </Layout>
+        );
+      }
+    `
+    );
   }
-  return;
 
-  // callback(
-  //   new Error(`next-mdx-fused: Layout not found in ${resourcePath}`)
-  // );
+  return callback(
+    null,
+    `
+      import { MDXRemote } from "next-mdx-remote";
+
+      export const frontMatter = ${JSON.stringify(data)}
+
+      export default function Page() {
+        return <MDXRemote {...${JSON.stringify(mdxSource)}} />
+      }
+    `
+  );
 };
