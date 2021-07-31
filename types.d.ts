@@ -1,9 +1,6 @@
-export type Options = {
-  mdxOptions?: {
-    remarkPlugins: unknown[];
-    rehypePlugins: unknown[];
-  };
-};
+import { SerializeOptions } from "next-mdx-remote/dist/types";
+
+export type Options = SerializeOptions;
 
 declare module "next-mdx-fused" {
   export default function nextMdxFused(

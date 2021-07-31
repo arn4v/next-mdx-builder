@@ -17,9 +17,7 @@ module.exports = async function layoutLoader(source) {
     callback(err);
   }
 
-  const mdxSource = await serialize(content, {
-    mdxOptions: options.mdxOptions,
-  });
+  const mdxSource = await serialize(content, options ?? {});
 
   if (typeof data.layout === "string") {
     return callback(

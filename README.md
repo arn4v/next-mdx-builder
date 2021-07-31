@@ -15,13 +15,10 @@ npm i --save next-mdx-builder
 ## API Reference
 
 ```ts
-type PluginOptions = {
-  mdxOptions: {
-    remarkPlugins: Array<unknown>;
-    rehypePlugins: Array<unknown>;
-  };
-};
+type PluginOptions = SerializeOptions;
 ```
+
+SerializeOptions: https://github.com/hashicorp/next-mdx-remote/blob/main/src/types.ts#L2
 
 ## Usage
 
