@@ -24,10 +24,10 @@ module.exports = async function layoutLoader(source) {
 
         export const frontMatter = ${JSON.stringify(data)}
 
-        <Layout>${content}</Layout>
+        <Layout frontMatter={frontMatter}>${content}</Layout>
       `;
 
-    callback(null, content);
+    callback(null, jsx);
   } else {
     const jsx = `
         export const frontMatter = ${JSON.stringify(data)};

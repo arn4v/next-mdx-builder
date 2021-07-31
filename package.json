@@ -1,12 +1,9 @@
 {
   "name": "next-mdx-builder",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "author": "Arnav Gosain <arnav@arnavgosain.com>",
   "main": "index.js",
-  "files": [
-    "index.js"
-  ],
   "types": "types.d.ts",
   "dependencies": {
     "fs-extra": "^10.0.0",
