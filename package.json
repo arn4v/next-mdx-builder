@@ -5,6 +5,8 @@
   "author": "Arnav Gosain <arnav@arnavgosain.com>",
   "main": "index.js",
   "types": "types.d.ts",
+  "repository": "https://github.com/arn4v/next-mdx-builder",
+  "bugs": "https://github.com/arn4v/next-mdx-builder/issues",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gray-matter": "^4.0.3",
