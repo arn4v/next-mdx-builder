@@ -23,7 +23,7 @@ const plugin = (pluginOptions) => {
         ],
       });
 
-      if (nextConfig.webpack === "function")
+      if (typeof nextConfig.webpack === "function")
         config = nextConfig.webpack(config, options);
 
       return config;
