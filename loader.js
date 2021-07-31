@@ -17,23 +17,22 @@ module.exports = async function layoutLoader(source) {
     callback(err);
   }
 
-  // callback(null, content);
+  const html = String.raw;
+
   if (typeof data.layout === "string") {
     const jsx = `
-        import Layout from "${options.layoutsPath}/${data.layout}"
+      import Layout from "${options.layoutsPath}/${data.layout}";
+      export const frontMatter = ${JSON.stringify(data)}
 
-        export const frontMatter = ${JSON.stringify(data)}
-
-        <Layout frontMatter={frontMatter}>${content}</Layout>
-      `;
+      <Layout frontMatter={frontMatter}>${content}</Layout>
+    `;
 
     callback(null, jsx);
   } else {
     const jsx = `
-        export const frontMatter = ${JSON.stringify(data)};
-
-        ${content}
-      `;
+      export const frontMatter = ${JSON.stringify(data)};
+      ${content}
+    `;
 
     callback(null, jsx);
   }
