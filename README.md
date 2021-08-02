@@ -2,6 +2,11 @@
 
 Next.js plugin that adds MDX pages support via next-mdx-remote & a custom Webpack plugin.
 
+## Note
+
+- This has only been tested with Next.js 11 (Webpack 5).
+- Requires Node.js >= 14
+
 ## Install
 
 ```shell
