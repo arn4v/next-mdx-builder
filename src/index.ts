@@ -1,13 +1,14 @@
-const path = require("path");
+import path from "path";
+import { SerializeOptions } from "next-mdx-remote/dist/types";
 
-const plugin = (pluginOptions) => {
-  return (
-    /** @type {import('next/dist/next-server/server/config-shared').NextConfig} */
-    nextConfig
-  ) => ({
+type Options = SerializeOptions;
+type NextConfig = Record<any, any>;
+
+const plugin = (pluginOptions: Options) => {
+  return (nextConfig: NextConfig): NextConfig => ({
     ...nextConfig,
     pageExtensions: Array.from(
-      new Set([...(nextConfig.pageExtensions ?? []), "md", "mdx"])
+      new Set([...(nextConfig.pageExtensions ?? []), "js", "jsx", "md", "mdx"])
     ),
     webpack(config, options) {
       config.module.rules.push({
@@ -31,4 +32,4 @@ const plugin = (pluginOptions) => {
   });
 };
 
-module.exports = plugin;
+export default plugin;
