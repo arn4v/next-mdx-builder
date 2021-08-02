@@ -25,35 +25,23 @@ module.exports = async function layoutLoader(source) {
     callback(err);
   }
 
-  if (typeof data.layout === "string") {
-    return callback(
-      null,
-      `
-      import { MDXRemote } from "next-mdx-remote";
-      import Layout from "${data.layout}";
-      export const frontMatter = ${JSON.stringify(data)}
-
-      export default function Page() {
-        return (
-          <Layout frontMatter={frontMatter}>
-            <MDXRemote {...${JSON.stringify(mdxSource)}} />
-          </Layout>
-        );
-      }
-    `
-    );
-  }
+  const hasLayout = typeof data.layout === "string";
 
   return callback(
     null,
     `
       import { MDXRemote } from "next-mdx-remote";
+      ${hasLayout ? `import Layout from "${data.layout}";` : ""}
 
       export const frontMatter = ${JSON.stringify(data)}
 
       export default function Page() {
-        return <MDXRemote {...${JSON.stringify(mdxSource)}} />
+        return (
+          ${hasLayout ? "<Layout frontMatter={frontMatter}>" : ""}
+            <MDXRemote {...${JSON.stringify(mdxSource)}} />
+          ${hasLayout ? "</Layout>" : ""}
+        );
       }
-    `
+    `.trim()
   );
 };
