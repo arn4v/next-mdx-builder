@@ -1,31 +1,12 @@
 {
   "name": "next-mdx-builder",
-  "version": "0.5.0",
-  "description": "Next.js plugin that adds MDX pages support via next-mdx-remote & a custom Webpack plugin.",
-  "homepage": "https://github.com/arn4v/next-mdx-builder#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arn4v/next-mdx-builder.git"
-  },
-  "bugs": {
-    "url": "https://github.com/arn4v/next-mdx-builder/issues"
-  },
+  "version": "0.4.4",
   "license": "MIT",
   "author": "Arnav Gosain <arnav@arnavgosain.com>",
-  "source": "./src/index.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.modern.js",
-  "types": "./dist/types.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "prepare": "yarn build",
-    "prebuild": "rimraf dist && mkdir dist && cp ./src/loader.js ./dist",
-    "predev": "npm run prebuild",
-    "build": "microbundle --no-sourcemap -f cjs --target node",
-    "dev": "microbundle watch --no-sourcemap -f cjs --target node"
-  },
+  "main": "index.js",
+  "types": "types.d.ts",
+  "repository": "https://github.com/arn4v/next-mdx-builder",
+  "bugs": "https://github.com/arn4v/next-mdx-builder/issues",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gray-matter": "^4.0.3",
@@ -34,10 +15,5 @@
   },
   "peerDependencies": {
     "next": ">=10.x <=11.x"
-  },
-  "devDependencies": {
-    "microbundle": "^0.13.3",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.3.5"
   }
 }
